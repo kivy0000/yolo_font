@@ -102,7 +102,7 @@ const handleLogin = async () => {
 /* 左侧 */
 .left-box {
   flex: 1;
-  background-color: #1f4e99;
+  background-color: #409EFF;
   display: flex;
   align-items: center;
   justify-content: center;
