@@ -3,6 +3,7 @@
 // ai start
 import {SuspendedBallChat} from 'ai-suspended-ball-chat'
 import {ref} from "vue";
+import request from "./request/ajax.ts";
 
 const aiChat = ref()
 // const apiUrl = ref('/api/chat/api/unified')
@@ -67,7 +68,7 @@ window.fetch = async (...args) => {
 
       // 4. 重新赋值修改后的请求体
       options.body = JSON.stringify(requestBody);
-      // console.log(' 原生拦截组件的聊天请求成功！修改后请求体：', requestBody);
+      console.log(' 原生拦截组件的聊天请求成功！修改后请求体：', requestBody);
     } catch (err) {
       console.error('原生请求拦截处理失败,未能成功发送用户问题：', err);
     }

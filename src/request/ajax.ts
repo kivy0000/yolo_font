@@ -36,7 +36,7 @@ NProgress.configure({
 })
 
 const request = axios.create({
-  baseURL: import.meta.env.VITE_BASE_API,
+  // baseURL: import.meta.env.VITE_BASE_API,
   timeout: 10000, //请求超时时间
   withCredentials: true,
   headers: {
