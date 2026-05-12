@@ -13,9 +13,9 @@ export default defineConfig(({ mode }) => {
         changeOrigin: true
       },
       "/api/chat": {
-        // target: "http://localhost:21400",
+        target: "http://localhost:21400",
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api\/chat/, ' ')
+        rewrite: (path:string) => path.replace(/^\/api\/chat/, 'yyw')
       },
 
     },

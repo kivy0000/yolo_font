@@ -9,7 +9,7 @@ const loginOut = () => {
   router.push('/login')
 }
 
-const logoUrl = ref('/src/assets/ai.png')
+const logoUrl = ref('src/assets/ai.png')
 
 </script>
 
