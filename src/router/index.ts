@@ -12,7 +12,17 @@ const router = createRouter({
         {
           path: '/content',
           name: 'Content',
-          component: () => import('../components/Content.vue')
+          component: () => import('../components/inside/center/Content.vue')
+        } ,
+        {
+          path: '/data',
+          name: 'Data',
+          component: () => import('../components/inside/center/Data.vue')
+        } ,
+        {
+          path: '/yolo',
+          name: 'Yolo',
+          component: () => import('../components/inside/center/Yolo.vue')
         }
       ]
     },

@@ -1,6 +1,7 @@
 <script setup lang="ts" name="login">
-import { ref, reactive } from 'vue'
-import { ElMessage } from 'element-plus'
+import {ref, reactive} from 'vue'
+import {ElMessage} from 'element-plus'
+import router from "../router";
 
 // 表单绑定数据
 const loginForm = reactive({
@@ -17,12 +18,29 @@ const handleLogin = async () => {
   const valid = await loginFormRef.value?.validate()
   if (!valid) return
 
-  // ======================
-  // 在这里写你自己的登录逻辑
-  // ======================
-  console.log('手动提交登录：', loginForm)
+  if (loginForm.password == '0000' && loginForm.username == 'admin') {
+    setTokenWithExpire()
+    await router.push('/')
+  } else {
+    ElMessage.warning('账号或密码错误，请检查')
+    return;
+  }
+}
 
-  ElMessage.success('手动登录成功！')
+const setTokenWithExpire = () => {
+  const token = 'fwfad577wa4f4w74d48w8dadwa8w'
+
+  // 存储 token
+  localStorage.setItem('token', token)
+
+  // 存储当前时间戳（登录时间）
+  const nowTime = new Date().getTime()
+  localStorage.setItem('tokenTime', nowTime.toString())
+
+  ElMessage.success('登录成功')
+
+  // 跳转首页
+  router.push('/')
 }
 </script>
 
@@ -31,7 +49,7 @@ const handleLogin = async () => {
     <div class="login-container">
       <!-- 左侧 -->
       <div class="left-box">
-        <h1>智慧卡口管理系统</h1>
+        <h1>演示系统</h1>
       </div>
 
       <!-- 右侧登录表单 -->
@@ -102,7 +120,7 @@ const handleLogin = async () => {
 /* 左侧 */
 .left-box {
   flex: 1;
-  background-color: #409EFF;
+  background-color: rgb(51, 117, 185);
   display: flex;
   align-items: center;
   justify-content: center;

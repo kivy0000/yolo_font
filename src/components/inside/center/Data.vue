@@ -1,7 +1,8 @@
 <script setup lang="ts">
 
+
 </script>
 
 <template>
- <p>content应用</p>
+ 数据分析案例
 </template>
