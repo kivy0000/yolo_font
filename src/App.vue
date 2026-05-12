@@ -5,9 +5,9 @@ import {SuspendedBallChat} from 'ai-suspended-ball-chat'
 import {ref} from "vue";
 
 const aiChat = ref()
-const apiUrl = ref('/api/chat/api/unified')
+// const apiUrl = ref('/api/chat/api/unified')
 // const apiUrl = ref('/api/chat/api/unified/stream') //流式调用，暂无返回值
-// const apiUrl = ref('/api/chat/ai/sendMsg') //deepseek
+const apiUrl = ref('/api/chat/ai/sendMsg') //deepseek
 const appName = ref('')
 const domainName = ref('')
 
