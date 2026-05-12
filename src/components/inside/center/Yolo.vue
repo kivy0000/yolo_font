@@ -119,7 +119,7 @@ onMounted(() => {
     <!-- 左右两个绿色框 -->
     <div class="content-wrap">
       <!-- 左侧：上传区 -->
-      <div class="panel left-panel">
+      <div class="left-panel">
         <!-- 黄色框：上传区域 -->
         <div class="upload-box" v-if="!originalImage">
           <input type="file" accept="image/*" @change="handleUpload" class="upload-input" />
@@ -137,7 +137,7 @@ onMounted(() => {
       </div>
 
       <!-- 右侧：结果区 -->
-      <div class="panel right-panel">
+      <div class=" right-panel">
         <!-- 红色框：结果信息区 -->
         <div class="result-info-box" v-if="resultImage">
           <div class="info-row">拟合度：{{ fitRate }}</div>
@@ -213,17 +213,6 @@ onMounted(() => {
   gap: 10px;
 }
 
-// 绿色面板
-.panel {
-  flex: 1;
-  background-color: #ffffff;
-  border: 2px solid #67C23A;
-  border-radius: 4px;
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-  overflow: hidden;
-}
 
 // 左侧上传区
 .upload-box {
@@ -286,8 +275,28 @@ onMounted(() => {
   }
 }
 
+.left-panel{
+  flex: 1;
+  background-color: #ffffff;
+  border: 2px solid #67C23A;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  overflow: hidden;
+}
+
 // 右侧结果区
 .right-panel {
+  flex: 1;
+  background-color: #ffffff;
+  border: 2px solid #67C23A;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  overflow: hidden;
+
   .result-info-box {
     border: 2px solid #F56C6C;
     border-radius: 4px;
