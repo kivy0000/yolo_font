@@ -2,6 +2,7 @@
 import { ref, onMounted } from 'vue'
 import { ElImage, ElButton, ElDialog, ElTable, ElTableColumn, ElMessage, ElLoading } from 'element-plus'
 import { useRouter } from 'vue-router'
+import axios from "axios";
 
 const router = useRouter()
 
@@ -32,6 +33,7 @@ const resetPage = () => {
   otherInfo2.value = ''
 }
 
+let imagefile ;
 // 图片上传
 const handleUpload = (e: Event) => {
   const file = (e.target as HTMLInputElement).files?.[0]
@@ -42,6 +44,7 @@ const handleUpload = (e: Event) => {
     imageInfo.value = `文件名：${file.name} | 大小：${(file.size / 1024).toFixed(2)} KB`
   }
   reader.readAsDataURL(file)
+  imagefile = file
 }
 
 // 开始目标检测
@@ -51,13 +54,16 @@ const startDetection = async () => {
     return
   }
   loading.value = true
-  // 模拟后端请求
-  setTimeout(() => {
-    // 模拟返回结果（实际项目替换为后端接口）
-    resultImage.value = originalImage.value // 模拟结果图，实际应替换为后端返回的检测结果
-    fitRate.value = '95.2%'
-    otherInfo1.value = '检测目标：person ×3'
-    otherInfo2.value = '耗时：120ms'
+
+  const formData = new FormData(); // 创建FormData对象
+  formData.append("file", imagefile); // 添加文件到FormData对象中
+
+  console.log(formData);
+axios.post('/web/api/plate/recognize',
+    // {base64_image: originalFile.value}
+    formData
+  ).then((data) =>{
+    console.log(data);
 
     // 记录到历史
     historyList.value.push({
@@ -71,8 +77,30 @@ const startDetection = async () => {
     })
 
     loading.value = false
-  }, 2000)
+  })
+  .catch(() =>{
+  loading.value = false
+
+})
+
+
 }
+
+// base64转Blob对象（通用工具函数，复制到你的js文件顶部）
+const base64ToBlob = (base64Str) => {
+  // 分割base64，提取MIME类型和纯编码内容
+  const arr = base64Str.split(',');
+  const mime = arr[0].match(/:(.*?);/)[1]; // 提取 image/png
+  const bstr = atob(arr[1]); // 解码base64
+  let n = bstr.length;
+  const u8arr = new Uint8Array(n);
+
+  while (n--) {
+    u8arr[n] = bstr.charCodeAt(n);
+  }
+
+  return new Blob([u8arr], { type: mime });
+};
 
 // 点击历史记录
 const loadHistory = (row: any) => {

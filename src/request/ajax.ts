@@ -40,7 +40,7 @@ const request = axios.create({
   timeout: 10000, //请求超时时间
   withCredentials: true,
   headers: {
-    'Content-Type': 'application/json'
+    // 'Content-Type': 'application/json'
   }
 })
 // 请求拦截器

@@ -8,11 +8,12 @@ export default defineConfig(({ mode }) => {
     server: {
       proxy: {
         "/web": {
-          target: env.VITE_PROXY_TARGET,
+          target: "http://127.0.0.1:8000",
           changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/web/, ''),
         },
         "/api/chat": {
-          target: "http://127.0.0.1:21400",
+          target: "http://127.0.0.1:8000",
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/api\/chat/, ' '),
         },
